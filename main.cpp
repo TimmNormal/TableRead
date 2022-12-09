@@ -15,14 +15,18 @@ using namespace std;
 
 int main()
 {
-    int comand;
+    string comand;
     string path;
     Table table = Table();
+
+    bool result = false;
     
 
-    cout << "Привествуем в дневнике нашего дивнего университета" << endl;
-    cout << "Введите соотвествующую клавишу" << endl;
+    
     while (true){
+        system("clear");
+        cout << "Привествуем в дневнике нашего дивнего университета" << endl;
+        cout << "Введите соотвествующую клавишу" << endl;
         cout << "1.Загрузить данные" << endl;
         cout << "2.Отобразить данные" << endl;
         cout << "3. Отобразить должников" << endl;
@@ -31,29 +35,43 @@ int main()
         cin >> comand;
         cout << endl;
 
-        switch (comand){
-            case 1:
+            if (comand == "1"){
+                system("clear");
                 cout << "Введите путь до файла (либо укажиту 'd' для значения по умолчанию)" << endl;
-                cin >> path;
-                cout << endl;
-                if(path == "d")
-                    table.loadTable("table.txt");
-                else
-                    table.loadTable(path);
-                break;
-            case 2:
+                
+                while(!result){
+                    
+                    cin >> path;
+                    cout << endl;
+
+                    if(path == "d")
+                        result = table.loadTable("table_s.txt");
+                    else
+                        result = table.loadTable(path);
+                    if(!result)
+                        cout << "!!!Укажите верный путь к файлу" << endl;
+                    
+                }
+                result = false;
+            }
+            else if (comand == "2"){
+                system("clear");
                 table.showRows();
-                break;
-            case 3:
+                cin >> comand;
+            }
+            else if (comand == "3"){
+                system("clear");
                 table.getFailStudents();
-                break;
-            case 4:
+                cin >> comand;
+            } else if (comand == "4"){
                 return 0;
-                break;
-            default:
+            }  
+            
+            else{
                 cout << "Укажите верный параметр" << endl;
-                break;
-        }
+            }
+               
+        
         
     }
 

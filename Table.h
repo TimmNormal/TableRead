@@ -18,7 +18,7 @@ public:
     list<Row> rows = {};
     list<string> stringRows = {};
 
-    void loadTable(string path );
+    bool loadTable(string path );
     void showRows();
     void getFailStudents();
 
@@ -30,7 +30,7 @@ public:
 
 //У меня компилятор не видел в том файле, сюда про дублировала, надеюсь вы поможете решить мою проблему
 
-void Table::loadTable(string path ){
+bool Table::loadTable(string path ){
     
     string line;
     ifstream file;
@@ -45,7 +45,9 @@ void Table::loadTable(string path ){
             this->rows.push_back(this->parseStringRow(line));
             this->stringRows.push_back(line);
         }
+        return true;
     }
+    return false;
 
 }
 
